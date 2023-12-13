@@ -2,6 +2,7 @@
 %bcond_without check
 
 %global goipath         github.com/open-telemetry/opentelemetry-collector-contrib
+%global gomodulesmode   GO111MODULE=on
 Version:                0.91.0
 
 %gometa
@@ -288,30 +289,109 @@ TODO: some description
 
 Name:           opentelemetry-collector-contrib
 Release:        1%{?dist}
-Summary:        None
+Summary:        OpenTelemetry Collector Contrib
 
 License:        Apache-2.0 AND BSD-3-Clause AND MIT
 URL:            %{gourl}
 Source:         %{gosource}
 
-Patch0: 0001-Update-aliyun-go-sdk-to-0.1.67.patch
-
-BuildRequires: go-rpm-macros
-BuildRequires: golang
+# Patch0: 0001-Update-aliyun-go-sdk-to-0.1.67.patch
 Provides: bundled(github.com/open-telemetry/opentelemetry-collector-contrib) = %{version}
+
+Provides: bundled(golang(bitbucket.org/atlassian/go-asap/v2)) = 2.6.0
+Provides: bundled(golang(code.cloudfoundry.org/go-loggregator)) = 7.4.0+incompatible
+Provides: bundled(golang(github.com/Azure/azure-event-hubs-go/v3)) = 3.6.1
+Provides: bundled(golang(github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor)) = 0.11.0
+Provides: bundled(golang(github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources)) = 1.2.0
+Provides: bundled(golang(github.com/ClickHouse/clickhouse-go/v2)) = 2.15.0
+Provides: bundled(golang(github.com/DataDog/opentelemetry-mapping-go/pkg/inframetadata)) = 0.8.1
+Provides: bundled(golang(github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes)) = 0.8.3
+Provides: bundled(golang(github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/logs)) = 0.8.3
+Provides: bundled(golang(github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics)) = 0.8.1
+Provides: bundled(golang(github.com/DataDog/opentelemetry-mapping-go/pkg/quantile)) = 0.8.1
+Provides: bundled(golang(github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp)) = 1.21.0
+Provides: bundled(golang(github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector)) = 0.45.0
+Provides: bundled(golang(github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector)) = 0.45.0
+Provides: bundled(golang(github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector/googlemanagedprometheus)) = 0.45.0
+Provides: bundled(golang(github.com/IBM/sarama)) = 1.42.1
+Provides: bundled(golang(github.com/ReneKroon/ttlcache/v2)) = 2.11.0
+Provides: bundled(golang(github.com/Showmax/go-fqdn)) = 1.0.0
+Provides: bundled(golang(github.com/aerospike/aerospike-client-go/v6)) = 6.13.0
+Provides: bundled(golang(github.com/alecthomas/participle/v2)) = 2.1.1
+Provides: bundled(golang(github.com/aliyun/aliyun-log-go-sdk)) = 0.1.67
+Provides: bundled(golang(github.com/cloudfoundry-incubator/uaago)) = 0.0.0
+Provides: bundled(golang(github.com/coreos/go-oidc)) = 2.2.1+incompatible
+Provides: bundled(golang(github.com/elastic/go-elasticsearch/v7)) = 7.17.10
+Provides: bundled(golang(github.com/elastic/go-structform)) = 0.0.10
+Provides: bundled(golang(github.com/expr-lang/expr)) = 1.15.6
+Provides: bundled(golang(github.com/gosnmp/gosnmp)) = 1.37.0
+Provides: bundled(golang(github.com/grafana/loki/pkg/push)) = 0.0.0
+Provides: bundled(golang(github.com/influxdata/go-syslog/v3)) = 3.0.1
+Provides: bundled(golang(github.com/influxdata/influxdb-observability/common)) = 0.5.8
+Provides: bundled(golang(github.com/influxdata/influxdb-observability/influx2otel)) = 0.5.8
+Provides: bundled(golang(github.com/influxdata/influxdb-observability/otel2influx)) = 0.5.8
+Provides: bundled(golang(github.com/knadh/koanf/v2)) = 2.0.1
+Provides: bundled(golang(github.com/mongodb-forks/digest)) = 1.0.5
+Provides: bundled(golang(github.com/opensearch-project/opensearch-go/v2)) = 2.3.0
+Provides: bundled(golang(github.com/redis/go-redis/v9)) = 9.3.0
+Provides: bundled(golang(github.com/relvacode/iso8601)) = 1.3.0
+Provides: bundled(golang(github.com/sijms/go-ora/v2)) = 2.7.24
+Provides: bundled(golang(github.com/snowflakedb/gosnowflake)) = 1.7.0
+Provides: bundled(golang(github.com/tg123/go-htpasswd)) = 1.2.1
+Provides: bundled(golang(github.com/tidwall/wal)) = 1.1.7
+Provides: bundled(golang(github.com/tilinna/clock)) = 1.1.0
+Provides: bundled(golang(github.com/xdg-go/scram)) = 1.1.2
+Provides: bundled(golang(go.opentelemetry.io/collector/component)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configauth)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configcompression)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configgrpc)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/confighttp)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/confignet)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configopaque)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configtelemetry)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/config/configtls)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/confmap)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/connector)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/connector)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/connector/forwardconnector)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/consumer)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter/debugexporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter/loggingexporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter/otlpexporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/exporter/otlphttpexporter)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension/auth)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension/ballastextension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/extension/zpagesextension)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/featuregate)) = 1.0.0
+Provides: bundled(golang(go.opentelemetry.io/collector/otelcol)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/processor)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/processor)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/processor)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/processor/batchprocessor)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/processor/memorylimiterprocessor)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/receiver)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/receiver)) = 0.91.0
+Provides: bundled(golang(go.opentelemetry.io/collector/receiver/otlpreceiver)) = 0.91.0
+Provides: bundled(golang(gopkg.in/zorkian/go-datadog-api.v2)) = 2.30.0
 
 %description %{common_description}
 
-%gopkg
-
 %prep
 %goprep -k
+%autopatch -p1
 
 %build
 export GOFLAGS="-buildmode=pie"
-
 %undefine gomodulesmode
-
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done
@@ -533,7 +613,6 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %doc connector/spanmetricsconnector/README.md
 %{_bindir}/*
 
-%gopkgfiles
 
 %changelog
 %autochangelog
